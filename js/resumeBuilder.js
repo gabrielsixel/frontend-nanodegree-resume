@@ -23,20 +23,14 @@ var work = {
          "employer": "MMDA Digital",
          "title": "Project Manager",
          "location": "Porto Alege, RS, BR",
-         "dates": {
-            "start": "23/12/2015",
-            "end": "01/07/2016"
-         },
+         "dates": "Start: 23/12/2015 - End : 01/07/2016",
          "description": "Lorem ipsum"
       },
       {
          "employer": "Accera",
          "title": "Business Analyst",
          "location": "São Leopoldo, RS, BR",
-         "dates": {
-            "start": "01/09/2015",
-            "end": "20/12/2015"
-         },
+         "dates": "Start: 01/09/2015 - End: 20/12/2015",
          "description": "Lorem ipsum"
       }
    ]
@@ -86,12 +80,38 @@ var education = {
 var d = "%data%";
 
 var formattedName = HTMLheaderName.replace(d, bio.name);
-
 $("#header").append(formattedName);
+
+var formattedRole = HTMLheaderRole.replace(d, bio.role);
+$("#header").append(formattedRole);
+
+var formattedbioPic=  HTMLbioPic.replace(d, bio.bioPic);
+$("#header").append(formattedbioPic);
+
+
 
 if (bio.skills.length > 0) {
    $("#header").append(HTMLskillsStart);
    for(var skill in bio.skills) {
       $("#skills").append(HTMLskills.replace(d, bio.skills[skill]));
+   }
+}
+
+if (work.jobs.length > 0) {
+   $("#workExperience").append(HTMLworkStart);
+   for(var job in work.jobs) {
+      var formattedJob = HTMLworkEmployer.replace(d, work.jobs[job].employer);
+      formattedJob =
+         formattedJob + HTMLworkTitle.replace(d, work.jobs[job].title);
+      $(".work-entry:last").append(formattedJob);
+
+      var formattedDate = HTMLworkDates.replace(d, work.jobs[job].dates);
+      $(".work-entry:last").append(formattedDate);
+
+      var formattedLocation = HTMLworkLocation.replace(d, work.jobs[job].location);
+      $(".work-entry:last").append(formattedLocation);
+
+      var formattedDescription = HTMLworkDescription.replace(d, work.jobs[job].description);
+      $(".work-entry:last").append(formattedDescription);
    }
 }
