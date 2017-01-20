@@ -3,13 +3,13 @@ var bio = {
    "name": "Gabriel Sixel",
    "role": "Front-End Developer",
    "welcomeMessage" : "Hi there! Welcome my portifolio! Olá, bem vindo!",
-   "contacts": [{
+   "contacts": {
      "mobile": "+55 51 93089335",
      "email": "gabriel.sixel@gmail.com",
      "github": "gabrielsixel",
      "twitter": "@sixel",
      "location": "Porto Alegre"
-  }],
+  },
    "skills": ["HTML", "CSS", "JS", "JQuery"],
    "bioPic": "https://en.gravatar.com/userimage/45398808/25bf2b75abe0ae8053082db810a16899.jpg?size=200"
  };
@@ -80,14 +80,14 @@ bio.display = function() {
   $("#header").prepend(formattedRole).prepend(formattedName).append(formattedbioPic,formattedMessage);
   $("#header").append(HTMLskillsStart);
 
-  if (bio.skills.length > 0) {
-    for(var skill in bio.skills) {
+  for(var skill in bio.skills) {
+      if (bio.skills.hasOwnProperty(skill)) {
       $("#skills").append(HTMLskills.replace(d, bio.skills[skill]));
     }
   }
 
-  if (bio.contacts.length > 0) {
-    for(var contact in bio.contacts) {
+  for(var contact in bio.contacts) {
+    if (bio.skills.hasOwnProperty(contacts))  {
       var formattedMobile = HTMLmobile.replace(d, bio.contacts[contact].mobile);
       var formattedEmail = HTMLemail.replace(d, bio.contacts[contact].email);
       var formattedGithub = HTMLgithub.replace(d, bio.contacts[contact].github);
@@ -102,7 +102,7 @@ bio.display = function() {
 
 education.display = function() {
   var d = "%data%";
-  if(education.schools.length > 0) {
+  if(education.schools.hasOwnProperty(name)) {
     $("#education").append(HTMLschoolStart);
       for(var school in education.schools) {
         var formattedName = HTMLschoolName.replace(d, education.schools[school].name);
@@ -121,7 +121,7 @@ education.display = function() {
         $(".education-entry:last").append(formattedMajor);
     }
   }
-  if(education.onlineCourses.length > 0) {
+  if(education.onlineCourses.hasOwnProperty(name)) {
     $("#education").append(HTMLschoolStart);
     $(".education-entry:last").append(HTMLonlineClasses);
       for(var course in education.onlineCourses) {
