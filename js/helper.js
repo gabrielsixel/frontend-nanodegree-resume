@@ -64,8 +64,9 @@ The Internationalize Names challenge found in the lesson Flow Control from JavaS
 */
 $(document).ready(function() {
   $('button').click(function() {
-    var $name = $('#name');
-    var iName = inName($name.text()) || function(){};
+    var name = $('#name');
+    console.log(name);
+    var iName = inName(name.text()) || function(){};
     $name.html(iName);
   });
 });
@@ -180,6 +181,7 @@ function initializeMap() {
     // hmmmm, I wonder what this is about...
     google.maps.event.addListener(marker, 'click', function() {
       // your code goes here!
+      infoWindow.open(map, marker);
     });
 
     // this is where the pin actually gets added to the map.
